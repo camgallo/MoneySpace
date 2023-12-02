@@ -1,51 +1,103 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Cool Website</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous" />
-    <link rel="stylesheet" href="custom.css" />
-  </head>
-  <body>
-    <div class="my-bg-photo bg-secondary text-white py-5 text-center shadow">
-      <h1 class="display-4">My Cool Website!</h1>
-      <p class="lead mb-0">A super interesting place on the web.</p>
-    </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Seu Catálogo de Criptomoedas</title>
+  <style>
+    /* Adicione seu CSS personalizado aqui */
+  </style>
+</head>
+<body>
 
-    <div class="container my-custom-container pt-3">
-      <nav class="mb-3">
-        <ul class="nav nav-tabs justify-content-center">
+  <!-- Barra de navegação -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="#">Seu Catálogo</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#favoritesModal">Favoritos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="animals.html">Animals</a>
-          </li>
+          <!-- Adicione mais categorias conforme necessário -->
         </ul>
-      </nav>
+      </div>
+    </div>
+  </nav>
 
-      <div class="row">
-        <div class="col-md-7">
-          <h1>Hey, welcome!</h1>
-          <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ratione inventore, quae modi voluptatem odit labore molestias cupiditate voluptas velit recusandae nisi neque, odio ullam ea libero quo sed praesentium.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid dolorum autem fuga temporibus architecto, numquam repellendus commodi minus excepturi. Voluptatum minima impedit inventore. Ipsum, voluptatem veritatis! Odio quod quaerat atque.</p>
-          <a href="about.html" class="btn btn-primary btn-lg">Read Our Story</a>
+  <!-- Conteúdo principal -->
+  <div class="container mt-4">
+    <h1>Bem-vindo ao Seu Catálogo de Criptomoedas</h1>
+    <p>Explore informações sobre criptomoedas e salve seus favoritos para revisitar mais tarde.</p>
+
+    <!-- Seção de Criptomoedas -->
+    <section>
+      <h2>Criptomoedas</h2>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Bitcoin</h5>
+          <p class="card-text">Acesse informações sobre Bitcoin.</p>
+          <button class="btn btn-primary" onclick="addFavorite('Bitcoin')">Salvar Favorito</button>
         </div>
-        <div class="col-md-5 text-center pt-5">
-          <img src="images/cat.svg" class="my-drawing img-fluid" alt="A drawing of a cat." />
+      </div>
+      <!-- Adicione mais cartões conforme necessário -->
+    </section>
+
+    <!-- Adicione mais seções ou categorias conforme necessário -->
+
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="bg-dark text-light text-center py-3">
+    <p>&copy; 2023 Seu Catálogo de Criptomoedas</p>
+  </footer>
+
+  <!-- Modal de Favoritos -->
+  <div class="modal fade" id="favoritesModal" tabindex="-1" aria-labelledby="favoritesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="favoritesModalLabel">Seus Favoritos</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul id="favoriteList" class="list-group">
+            <!-- Lista de Favoritos -->
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
+  </div>
 
-    <footer class="border-top mt-5 py-4 text-center text-muted small">
-      <p>&copy; 2020 My Site</p>
-    </footer>
+  <!-- Scripts JavaScript necessários (Bootstrap e sua lógica personalizada) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Lógica JavaScript para salvar favoritos
+    const favoriteList = [];
 
-    <!-- JavaScript and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-  </body>
+    function addFavorite(category) {
+      favoriteList.push(category);
+      updateFavoritesModal();
+    }
+
+    function updateFavoritesModal() {
+      const favoritesModal = document.getElementById('favoriteList');
+      favoritesModal.innerHTML = '';
+
+      favoriteList.forEach(favorite => {
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item';
+        listItem.textContent = favorite;
+        favoritesModal.appendChild(listItem);
+      });
+    }
+  </script>
+</body>
 </html>

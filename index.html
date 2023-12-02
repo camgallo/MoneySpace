@@ -1,35 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalStorage Example</title>
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <title>Categoria: Hookup Sites teste</title>
+  <!-- Custom CSS -->
+  <style>
+    body {
+      padding: 20px;
+    }
+    .category-card {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="card mt-4">
-  <div class="card-body">
-    <h2 class="card-title">Hookup Sites</h2>
-    <p class="card-text">Do you want to get laid? Are you searching for hookup sites? Find real girls looking for a sex date locally and fuck her tonight! Single or married, these are horny women looking for a sexual encou...</p>
+<div class="container">
+  <h2>Local Storage Example</h2>
 
-    <ul class="list-group">
-      <li class="list-group-item">
-        <a class="link-analytics link-icon-base ctm-icon ctm-icon230" target="_blank" data-category="Hookup Sites" data-category-link="https://porndude.link/adultfriendfinder" href="https://porndude.link/adultfriendfinder" rel="nofollow noopener">AdultFriendFinder</a>
-        <a class="review" target="_blank" rel="noopener" data-key="0" data-favicon="ctm-icon ctm-icon230" href="https://theporndude.com/230/adultfriendfinder"></a>
-        <p class="desc">AdultFriendFinder.com aka aff.com is an adult-oriented social networking that has been around sin...</p>
-      </li>
+  <!-- Cards to display categories and sites -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card category-card">
+        <div class="card-body">
+          <h5 class="card-title">Notícias</h5>
+          <ul class="list-group">
+            <!-- Sites for the "Notícias" category will be added here dynamically -->
+          </ul>
+        </div>
+      </div>
+    </div>
 
-      <!-- Adicione mais itens conforme necessário -->
-      
-    </ul>
-
-    <a target="_blank" rel="noopener" href="https://theporndude.com/best-dating-sites" class="btn btn-primary mt-3">Veja todos os 29 sites</a>
+    <div class="col-md-6">
+      <div class="card category-card">
+        <div class="card-body">
+          <h5 class="card-title">Tecnologia</h5>
+          <ul class="list-group">
+            <!-- Sites for the "Tecnologia" category will be added here dynamically -->
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
+
 </div>
 
-<!-- Scripts JavaScript necessários (Bootstrap) -->
+<!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Custom JavaScript -->
+<script>
+  // Função para obter dados do localStorage e exibir nos cards
+  function exibirDados() {
+    var dadosArmazenados = localStorage.getItem("dados");
+
+    if (dadosArmazenados) {
+      var dadosObjeto = JSON.parse(dadosArmazenados);
+
+      // Itera sobre as categorias
+      dadosObjeto.categorias.forEach(function(categoria) {
+        // Encontra o elemento da lista de acordo com o nome da categoria
+        var listaElement = document.querySelector(`.card-title:contains('${categoria.nome}')`).nextElementSibling;
+
+        // Itera sobre os sites da categoria e adiciona à lista
+        categoria.sites.forEach(function(site) {
+          var listItem = document.createElement("li");
+          listItem.className = "list-group-item";
+          listItem.innerHTML = `<a href="${site.url}" target="_blank">${site.nome}</a>`;
+          listaElement.appendChild(listItem);
+        });
+      });
+    }
+  }
+
+  // Função auxiliar para simular o suporte ao :contains no querySelector
+  // :contains não é nativamente suportado, então estamos usando esta função
+  // Fonte: https://stackoverflow.com/a/40658647
+  function contains(selector, text) {
+    var elements = document.querySelectorAll(selector);
+    return Array.from(elements).filter(function(element) {
+      return RegExp(text).test(element.textContent);
+    });
+  }
+
+  // Chama a função para exibir os dados
+  exibirDados();
+</script>
 
 </body>
 </html>
